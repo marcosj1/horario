@@ -1,0 +1,183 @@
+html, body{
+	padding: 0px;
+	margin: 0px;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+.toast{
+	background-color: #0063ad;
+	/*min-height: 1vh;*/
+	max-width: 600px;
+	color: white;
+	position: fixed;
+	animation-duration: 1s;
+  	animation-fill-mode: both;
+  	z-index: 5000;
+  	/*visibility: hidden;*/
+  	
+}
+
+.toast .tt-mensaje{
+	color: white;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.tt-br{
+	border-radius: 10px;
+}
+
+.tt-ptr{
+	/*animation-name: InDown;*/
+	top: 20px;
+	right: 20px;
+}
+
+.tt-ptl{
+	/*animation-name: InDown;*/
+	top: 20px;
+	left: 20px;
+}
+.tt-ptc{
+	/*animation-name: InDown;*/
+	max-width: 100%;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.tt-pbr{
+	/*animation-name: InUp;*/
+	bottom: 20px;
+	right: 20px;
+}
+
+.tt-pbl{
+	/*animation-name: InUp;*/
+	bottom: 20px;
+	left: 20px;
+}
+
+.tt-pbc{
+	/*animation-name: InUp;*/
+	max-width: 100%;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.InUp{
+	animation-name: InUp;
+}
+
+.OutUp{
+	animation-name: OutUp;
+}
+
+.InDown{
+	animation-name: InDown;
+}
+
+.OutDown{
+	animation-name: OutDown;
+}
+
+.InRight{
+	animation-name: InRight;
+}
+
+.OutRight{
+	animation-name: OutRight;
+}
+
+
+
+/*codigo de animate css*/
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+/*Entrar y salir por la derecha*/
+
+@keyframes InRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes OutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+
+
+
+/*Arriba*/
+
+@keyframes InDown {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes OutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+
+/*Abajo*/
+@keyframes InUp {
+   from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+@keyframes OutDown {
+    from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+
+
