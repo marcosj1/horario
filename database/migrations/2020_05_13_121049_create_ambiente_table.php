@@ -19,6 +19,19 @@ class CreateAmbienteTable extends Migration
             $table->integer('id_sede');
             $table->timestamps();
         });
+
+        DB::unprepared('CREATE TRIGGER registrar_ambiente AFTER INSERT ON `ambiente` FOR EACH ROW
+               BEGIN
+                  INSERT INTO bitacora (accion, fecha, tabla) VALUES ("Registrar",now(),"Ambiente");
+               END');
+         DB::unprepared('CREATE TRIGGER actualizar_ambiente AFTER UPDATE ON `ambiente` FOR EACH ROW
+               BEGIN
+                  INSERT INTO bitacora (accion, fecha, tabla) VALUES ("Actualizar",now(),"Ambiente");
+               END');
+          DB::unprepared('CREATE TRIGGER eliminar_ambiente AFTER DELETE ON `ambiente` FOR EACH ROW
+               BEGIN
+                  INSERT INTO bitacora (accion, fecha, tabla) VALUES ("Eliminar",now(),"Ambiente");
+               END');
     }
 
     /**
