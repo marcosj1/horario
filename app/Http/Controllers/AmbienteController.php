@@ -5,18 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AmbienteCreateRequest;
 use App\Sede;
+use App\Tipo_ambiente;
 use App\Ambiente;
+use DB;
 
 class AmbienteController extends Controller
 {
 
   public function index()
   {
-    $est = Sede::select('ambiente.id as id_ambiente', 'sede.nombre as nom_estado', 'ambiente.nombre as nom_municipio')
-    ->join('ambiente', 'sede.id', '=', 'ambiente.id_sede')
+    $est = DB::table('ambiente')->select('ambiente.id as id_ambiente,ambiente.nombre as nom_ambiente, (select nombre from sede where id = ambiente.id_sede) as nombre_sede, (select nombre from tipo_ambiente where id = ambiente.id_tipo_ambiente) as nombre_tipoa')
+    ->join('sede', 'sede.id', '=', 'ambiente.id_sede')
+    ->join('tipo_ambiente', 'tipo_ambiente.id', '=', 'ambiente.id_tipo_ambiente')
     ->get();
 
-    return view('ambiente.index', ['est'=> $est]);
+    return view('ambiente.index', compact('est'));
 }
 
 
@@ -27,7 +30,8 @@ public function create()
 {
 
    $esta = Sede::all();
-   return view('ambiente.create', compact('esta'));
+   $este = Tipo_ambiente::all();
+   return view('ambiente.create', compact('esta','este'));
 }
 
 
@@ -38,6 +42,7 @@ public function store(AmbienteCreateRequest $request)
     $ambiente = new Ambiente();
     $ambiente->nombre = request('nombre');
     $ambiente->id_sede = request('id_sede');
+    $ambiente->id_tipo_ambiente = request('id_tipo_ambiente');
     if($ambiente->save()){
 
         return redirect('../../ambiente')->with('msj', 'Datos Registrados');
@@ -53,6 +58,7 @@ public function store(AmbienteCreateRequest $request)
 public function show($id)
 {
    return ambiente::where('id_sede','=',$id)->get();
+   return ambiente::where('id_tipo_ambiente','=',$id)->get();
 }
 
 
@@ -76,6 +82,7 @@ public function edit($id)
 
         $ambiente->nombre = $request->get('nombre');
           $ambiente->id_sede = $request->get('id_sede');
+          $ambiente->id_tipo_ambiente = $request->get('id_tipo_ambiente');
 
         if($ambiente->update()){
 

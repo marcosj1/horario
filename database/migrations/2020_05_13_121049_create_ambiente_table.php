@@ -17,6 +17,7 @@ class CreateAmbienteTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('id_sede');
+            $table->integer('id_tipo_ambiente');
             $table->timestamps();
         });
 

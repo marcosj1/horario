@@ -50,6 +50,16 @@
  						</select>
  					</div>
 
+          <div class="form-group col-xl-4" style="float: left;">
+ 						<label for="id_tipo_ambiente" class="col-form-label">Tipo de Ambiente</label>
+ 						<select id="id_tipo_ambiente" name="id_tipo_ambiente" class="form-control">
+ 							<option value="">Seleccione...</option>
+ 							@foreach($este as $estas)
+ 							<option value="{{$estas->id}}">{{$estas->nombre}}</option>
+ 							@endforeach
+ 						</select>
+ 					</div>
+
  					<div class="form-group">
  						<label for="nombre" class="col-form-label">Nombre del Ambiente</label>
  						<input required="" id="nombre" name="nombre" type="text" class="form-control">

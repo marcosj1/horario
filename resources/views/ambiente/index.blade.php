@@ -65,17 +65,21 @@
  								<th hidden=""></th>
  								<th>Nombre</th>
                 <th>Sede</th>
+                <th>Tipo de Ambiente</th>
  								<th>Opciones</th>
  							</tr>
  						</thead>
  						<tbody>
 
  				@foreach($est as $ests)
+        	@foreach($ests as $esta)
  							<tr>
 
- 								<td hidden="">{{$ests->id_ambiente}}</td>
-                <td>{{$ests->nom_municipio}}</td>
-                <td>{{$ests->nom_estado}}</td>
+ 						 <td hidden="">{{$ests->id_ambiente}}</td>
+                <td>{{$ests->nom_ambiente}}</td>
+                <td>{{$esta->nom_sede}}</td>
+                <td>{{$esta->nom_tipoa}}</td>
+
  								<td>
 
 
@@ -95,6 +99,7 @@
 
  							</tr>
  							@endforeach
+              @endforeach
  						</tbody>
 
  					</table>

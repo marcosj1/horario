@@ -54,6 +54,17 @@
             </select>
           </div>
 
+          <div class="form-group col-xl-4" style="float: left;">
+            <label for="id_sede" class="col-form-label">Tipo de Ambiente</label>
+            <select id="id_sede" name="id_sede" class="form-control">
+              <option value="">Seleccione...</option>
+              @foreach($datosestado as $datosestados)
+
+              <option value="{{ $datosestados->id }}" @if($est->id_tipo_ambiente=== $datosestados->id) selected='selected' @endif>{{ $datosestados->nombre }}</option>
+              @endforeach
+            </select>
+          </div>
+
  					<div class="form-group" >
  						<label for="nombre" class="col-form-label">Nombre del Ambiente</label>
  						<input id="nombre" value="{{ $est->nombre }}" name="nombre" type="text" class="form-control">
