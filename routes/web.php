@@ -28,7 +28,11 @@ Route::resource('categoria','CategoriaController');
 Route::resource('area','AreaController');
 Route::resource('especialidad','EspecialidadController');
 Route::resource('docente','DocenteController');
+
+
 Route::resource('pnf','PnfController');
+
+
 Route::resource('dedicacion','DedicacionController');
 Route::resource('trayecto','TrayectoController');
 Route::resource('unidad','UnidadController');
@@ -37,6 +41,7 @@ Route::resource('tipo_ambiente','Tipo_ambienteController');
 Route::resource('sede','SedeController');
 Route::resource('ambiente','AmbienteController');
 Route::resource('respaldar_restaurar','RespaldoRestaurarController');
+Route::resource('rol','RolController');
 
 
 

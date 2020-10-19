@@ -14,7 +14,11 @@ class CreateUsersTable extends Migration
  public function up()
  {
  Schema::create('users', function($table) {
+<<<<<<< HEAD
  $table->sincrements('id');
+=======
+ $table->bigIncrements('id');
+>>>>>>> d994e32202a1a70daac94c8ec6e7766c7f757c8c
  $table->string('name', 20);
  $table->string('apellido', 20);
  $table->string('cedula', 20);

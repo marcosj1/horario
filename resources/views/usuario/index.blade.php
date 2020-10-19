@@ -2,13 +2,13 @@
 
 
  @section('content')
- 
+
 
 
 
  <!-- ============================================================== -->
  <!-- pageheader -->
- <!-- ============================================================== 
+ <!-- ==============================================================
 
  -->
 
@@ -40,7 +40,7 @@
  			<div class="page-breadcrumb">
  				<nav aria-label="breadcrumb">
  					<ol class="breadcrumb">
- 						
+
  						<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Seguridad</a></li>
  						<li class="breadcrumb-item active" aria-current="page">Usuario</li>
  					</ol>
@@ -72,7 +72,7 @@
  							</tr>
  						</thead>
  						<tbody>
- 							
+
  							@foreach($usu as $usus)
  							<tr>
 
@@ -84,10 +84,11 @@
  								<td>{{$usus->nom_pnf}}</td>
  								<td>
 
-
+                  @can('usuario.edit')
  									<a href="{{ route('usuario.edit',$usus->id_usuario) }}"><button href="#" class="btn btn-rounded btn-info">Modificar</button></a>
+                  @endcan
 
-
+                  
  									<a href="#" class="btn btn-rounded btn-danger" v-on:click.prevent="confirmDocente({{$usus}})">Eliminar</a>
 
 
@@ -95,9 +96,9 @@
  								</td>
 
  							</tr>
- 							@endforeach	
+ 							@endforeach
  						</tbody>
- 						
+
  					</table>
  					@include('usuario/Confirm')
  				</div>
