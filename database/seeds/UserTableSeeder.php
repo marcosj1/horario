@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Pnf;
+use Caffeinated\Shinobi\Models\Role;
 class UserTableSeeder extends Seeder {
 
 	public function run()
@@ -28,6 +29,17 @@ class UserTableSeeder extends Seeder {
 			'created_at' => new DateTime,
 			'updated_at' => new DateTime
 		));
+
+		Role::create([
+
+			'name' 		=> 'Admin',
+			'slug' 		=> 'admin',
+			'special' => 'all-access'
+
+
+
+
+		]);
 	}
 
 }

@@ -258,6 +258,10 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a class="nav-link" href="/rol">Rol</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link" href="/bitacora">Bitacora</a>
                                 </li>
                                 <li class="nav-item">

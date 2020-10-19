@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Pnf;
+use Caffeinated\Shinobi\Models\Role;
 use App\Http\Requests\UsuarioRequest;
 class UsuarioController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +35,9 @@ class UsuarioController extends Controller
     {
       $pnf = pnf::all();
 
-      return view('usuario.create', ['pnf'=>$pnf]);
+      $rol = Role::get();
+
+      return view('usuario.create', ['pnf'=>$pnf, 'rol' =>$rol]);
   }
 
     /**
@@ -53,7 +59,12 @@ class UsuarioController extends Controller
 
 
 
+
+
             if($usu->save()){
+
+            //guardar $roles
+              $usu->roles()->sync($request->get('roles'));
 
               return redirect('../../usuario')->with('msj', 'Datos Registrados');
 
@@ -85,7 +96,9 @@ class UsuarioController extends Controller
     public function edit($id)
     {
      $datosPnf = pnf::all();
-     return view('usuario.edit', ['usu'=> usuario::findOrFail($id),'datosPnf'=>$datosPnf]);
+     $rol = Role::get();
+
+     return view('usuario.edit', ['usu'=> user::findOrFail($id),'datosPnf'=>$datosPnf, 'rol' => $rol]);
  }
 
     /**
@@ -97,7 +110,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $usu = Usuario::findOrFail($id);
+        $usu = User::findOrFail($id);
         $usu->name = $request->get('name');
         $usu->apellido = $request->get('apellido');
         $usu->cedula = $request->get('cedula');
@@ -125,7 +138,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-     $usu = Usuario::findOrFail($id);
+     $usu = User::findOrFail($id);
      $usu->delete();
 
  }
