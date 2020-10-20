@@ -7,20 +7,32 @@ use App\Http\Requests\PnfCreateRequest;
 use App\Pnf;
 class PnfController extends Controller
 {
- 
+
+
+  public function __construct()
+      {
+
+        $this->middleware('can:pnf.create')->only(['create','store']);
+        $this->middleware('can:pnf.index')->only(['index']);
+        $this->middleware('can:pnf.edit')->only(['edit', 'update']);
+        $this->middleware('can:pnf.show')->only(['show']);
+        $this->middleware('can:pnf.delete')->only(['destroy']);
+
+      }
+
   public function index()
   {
     $est = Pnf::all();
     return view('pnf.index', ['est'=> $est]);
 }
 
-    
+
 
 
 
 public function create()
 {
-    
+
    return view('pnf.create');
 }
 
@@ -33,12 +45,12 @@ public function store(PnfCreateRequest $request)
     $pnf->nombre = request('nombre');
     $pnf->codigo = request('codigo');
     if($pnf->save()){
-       
+
         return redirect('../../pnf')->with('msj', 'Datos Registrados');
-        
+
     } else{
         return back()->with('Errormsj', 'Error al Ejecutar la Operación');
-        
+
     }
 
 }
@@ -70,15 +82,15 @@ public function edit($id)
         $pnf->codigo = $request->get('codigo');
 
         if($pnf->update()){
-           
+
             return redirect('../../pnf')->with('msj', 'Datos Modificados');
-            
+
         } else{
             return back()->with('Errormsj', 'Error al Ejecutar la Operación');
-            
+
         }
 
-        
+
     }
 
     /**
@@ -92,7 +104,7 @@ public function edit($id)
         $datosPnf = Pnf::findOrFail($id);
         $datosPnf->delete();
 
-        
+
 
 
 

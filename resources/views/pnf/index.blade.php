@@ -2,13 +2,13 @@
 
 
  @section('content')
- 
+
 
 
 
  <!-- ============================================================== -->
  <!-- pageheader -->
- <!-- ============================================================== 
+ <!-- ==============================================================
 
  -->
 
@@ -40,7 +40,7 @@
  			<div class="page-breadcrumb">
  				<nav aria-label="breadcrumb">
  					<ol class="breadcrumb">
- 						
+
  						<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Ubicación</a></li>
  						<li class="breadcrumb-item active" aria-current="page">pnf</li>
  					</ol>
@@ -54,7 +54,7 @@
  	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
  		<div class="card">
  			<h5 class="card-header">Lista de pnfs <a href="../pnf/create" class="btn btn-rounded btn-primary" style="width: 100px;float: right; margin-left: 10px;">+ Registar</a></h5>
-		
+
  			<div class="card-body">
 
  				<div class="table-responsive">
@@ -69,7 +69,7 @@
  							</tr>
  						</thead>
  						<tbody>
- 							
+
  				@foreach($est as $ests)
  							<tr>
 
@@ -78,20 +78,20 @@
  								<td>{{$ests->codigo}}</td>
  								<td>
 
-
+                  @can('pnf.edit')
  									<a href="{{ route('pnf.edit',$ests->id) }}"><button href="#" class="btn btn-rounded btn-info">Modificar</button></a>
-
+                  @endcan
 
 						<a href="#" class="btn btn-rounded btn-danger" v-on:click.prevent="confirmEstado({{$ests}})">Eliminar</a>
 
- 						
+
 
  								</td>
 
  							</tr>
- 							@endforeach	
+ 							@endforeach
  						</tbody>
- 						
+
  					</table>
  					@include('pnf/Confirm')
  				</div>
